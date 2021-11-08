@@ -4,8 +4,9 @@ import * as playerActions from './actions/player';
 import * as videoActions from './actions/video';
 
 export default class Manager {
-  constructor(store) {
+  constructor(store, interceptPlayerActionsCreator) {
     this.store = store || createStore(reducer);
+    this.interceptPlayerActionsCreator = interceptPlayerActionsCreator;
 
     this.video = null;
     this.rootElement = null;
@@ -15,7 +16,7 @@ export default class Manager {
     const manager = this;
     const { dispatch } = this.store;
     const actions = {
-      ...playerActions,
+      ...(this.interceptPlayerActionsCreator ? this.interceptPlayerActionsCreator(playerActions) : playerActions),
       ...videoActions
     };
 
@@ -75,3 +76,5 @@ export default class Manager {
     return this.subscribeToStateChange(listener, () => this.getState().player);
   }
 }
+
+Manager.onActionsCreation = (actions) => actions

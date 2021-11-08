@@ -59,6 +59,7 @@ const propTypes = {
   onRateChange: PropTypes.func,
   onVolumeChange: PropTypes.func,
 
+  interceptPlayerActionsCreator: PropTypes.func,
   store: PropTypes.object
 };
 
@@ -77,7 +78,7 @@ export default class Player extends Component {
     this.controlsHideTimer = null;
 
     this.video = null; // the Video component
-    this.manager = new Manager(props.store);
+    this.manager = new Manager(props.store, props.interceptPlayerActionsCreator);
     this.actions = this.manager.getActions();
     this.manager.subscribeToPlayerStateChange(
       this.handleStateChange.bind(this)

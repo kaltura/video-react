@@ -8,7 +8,8 @@ const propTypes = {
   manager: PropTypes.object,
   actions: PropTypes.object,
   player: PropTypes.object,
-  shortcuts: PropTypes.array
+  shortcuts: PropTypes.array,
+  allowShortcut: PropTypes.func
 };
 
 const defaultProps = {
@@ -268,7 +269,7 @@ export default class Shortcut extends Component {
   }
 
   handleKeyPress(e) {
-    const { player, actions } = this.props;
+    const { player, actions, allowShortcut } = this.props;
     if (!player.isActive) {
       return;
     }
@@ -302,7 +303,9 @@ export default class Shortcut extends Component {
     })[0];
 
     if (shortcut) {
-      shortcut.handle(player, actions);
+      if (!allowShortcut || allowShortcut(shortcut)) {
+        shortcut.handle(player, actions);
+      }
       e.preventDefault();
     }
   }
