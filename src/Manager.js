@@ -4,9 +4,10 @@ import * as playerActions from './actions/player';
 import * as videoActions from './actions/video';
 
 export default class Manager {
-  constructor(store, interceptPlayerActionsCreator) {
+  constructor(store, prePlayerActionsCreator, postActionsCreator) {
     this.store = store || createStore(reducer);
-    this.interceptPlayerActionsCreator = interceptPlayerActionsCreator;
+    this.prePlayerActionsCreator = prePlayerActionsCreator;
+    this.postActionsCreator = postActionsCreator;
 
     this.video = null;
     this.rootElement = null;
@@ -16,7 +17,8 @@ export default class Manager {
     const manager = this;
     const { dispatch } = this.store;
     const actions = {
-      ...(this.interceptPlayerActionsCreator ? this.interceptPlayerActionsCreator(playerActions) : playerActions),
+      ...(this.prePlayerActionsCreator ? this.prePlayerActionsCreator(playerActions) : playerActions), // Kaltura adjustments -
+      // we should only intercept player action using  `prePlayerActionsCreator`
       ...videoActions
     };
 
@@ -30,12 +32,16 @@ export default class Manager {
       };
     }
 
-    return Object.keys(actions)
+    const result = Object.keys(actions)
       .filter(key => typeof actions[key] === 'function')
       .reduce((boundActions, key) => {
         boundActions[key] = bindActionCreator(actions[key]);
         return boundActions;
       }, {});
+
+
+    this.postActionsCreator(result)
+    return result;
   }
 
   getState() {

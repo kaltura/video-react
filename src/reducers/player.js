@@ -9,8 +9,6 @@ import {
   END,
   SEEKING,
   SEEKED,
-  SEEKING_TIME,
-  END_SEEKING,
   DURATION_CHANGE,
   TIME_UPDATE,
   VOLUME_CHANGE,
@@ -29,7 +27,10 @@ import {
 import {
   FULLSCREEN_CHANGE,
   PLAYER_ACTIVATE,
-  USER_ACTIVATE
+  USER_ACTIVATE,
+  SEEKING_TIME,
+  END_SEEKING,
+
 } from '../actions/player';
 
 const initialState = {

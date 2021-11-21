@@ -10,8 +10,6 @@ import {
   END,
   SEEKING,
   SEEKED,
-  SEEKING_TIME,
-  END_SEEKING,
   DURATION_CHANGE,
   TIME_UPDATE,
   VOLUME_CHANGE,
@@ -19,6 +17,8 @@ import {
   RATE_CHANGE
 } from '../../actions/video';
 import {
+  SEEKING_TIME,
+  END_SEEKING,
   FULLSCREEN_CHANGE,
   PLAYER_ACTIVATE,
   USER_ACTIVATE

@@ -8,8 +8,6 @@ export const PAUSE = 'video-react/PAUSE';
 export const END = 'video-react/END';
 export const SEEKING = 'video-react/SEEKING';
 export const SEEKED = 'video-react/SEEKED';
-export const SEEKING_TIME = 'video-react/SEEKING_TIME';
-export const END_SEEKING = 'video-react/END_SEEKING';
 export const DURATION_CHANGE = 'video-react/DURATION_CHANGE';
 export const TIME_UPDATE = 'video-react/TIME_UPDATE';
 export const VOLUME_CHANGE = 'video-react/VOLUME_CHANGE';
@@ -183,20 +181,6 @@ export function handleError(videoProps) {
   return {
     type: ERROR,
     videoProps
-  };
-}
-
-export function handleSeekingTime(time) {
-  return {
-    type: SEEKING_TIME,
-    time
-  };
-}
-
-export function handleEndSeeking(time) {
-  return {
-    type: END_SEEKING,
-    time
   };
 }
 

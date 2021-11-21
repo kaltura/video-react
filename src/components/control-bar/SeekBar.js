@@ -88,6 +88,7 @@ export default class SeekBar extends Component {
       player: { currentTime, seekingTime, duration, buffered },
       mouseTime
     } = this.props;
+
     const time = seekingTime || currentTime;
 
     return (

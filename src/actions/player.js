@@ -1,5 +1,20 @@
 import fullscreen from '../utils/fullscreen';
 
+
+/**
+ * Kaltura adjustments!
+ * The actions in this section were moved from video actions to player actions as they are controlled by the user,
+ * meaning they are triggered from visual components and not from video.js
+ * In that case we need them to be affected by `interceptPlayerActionsCreator` which wrap only player actions.
+ *
+ * Move any method you find relevant from video into here.
+ */
+export const SEEKING_TIME = 'video-react/SEEKING_TIME';
+export const END_SEEKING = 'video-react/END_SEEKING';
+/**
+ * End of Kaltura adjustments!
+ */
+
 export const OPERATE = 'video-react/OPERATE';
 export const FULLSCREEN_CHANGE = 'video-react/FULLSCREEN_CHANGE';
 export const PLAYER_ACTIVATE = 'video-react/PLAYER_ACTIVATE';
@@ -189,3 +204,30 @@ export function toggleFullscreen(player) {
     isFullscreen: !player.isFullscreen
   };
 }
+
+
+/**
+ * Kaltura adjustments!
+ * The actions in this section were moved from video actions to player actions as they are controlled by the user,
+ * meaning they are triggered from visual components and not from video.js
+ * In that case we need them to be affected by `interceptPlayerActionsCreator` which wrap only player actions.
+ *
+ * Move any method you find relevant from video into here.
+ */
+export function handleSeekingTime(time) {
+  return {
+    type: SEEKING_TIME,
+    time
+  };
+}
+
+export function handleEndSeeking(time) {
+  return {
+    type: END_SEEKING,
+    time
+  };
+}
+
+/**
+ * End of Kaltura adjustments!
+ */
