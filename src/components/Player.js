@@ -128,9 +128,9 @@ export default class Player extends Component {
       <PosterImage key="poster-image" order={1.0} />,
       <LoadingSpinner key="loading-spinner" order={2.0} />,
       <Bezel key="bezel" order={3.0} />,
-      <BigPlayButton key="big-play-button" order={4.0} />,
-      <ControlBar key="control-bar" order={5.0} />,
-      <Shortcut key="shortcut" order={99.0} />
+      // <BigPlayButton key="big-play-button" order={4.0} />,
+      // <ControlBar key="control-bar" order={5.0} />,
+      // <Shortcut key="shortcut" order={99.0} />
     ];
   }
 

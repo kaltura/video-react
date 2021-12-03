@@ -87,7 +87,6 @@ export function mergeAndSortChildren(
   const children = React.Children.toArray(_children);
   const { order, ...parentProps } = _parentProps; // ignore order from parent
   return children
-    .filter(e => !e.props.disabled) // filter the disabled components
     .concat(
       defaultChildren.filter(
         c => !find(children, component => isTypeEqual(component, c))
